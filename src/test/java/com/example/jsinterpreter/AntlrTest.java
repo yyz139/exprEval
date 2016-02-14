@@ -2,12 +2,14 @@ package com.example.jsinterpreter;
 
 import com.example.jsinterpreter.antlr.ReginaScriptLexer;
 import com.example.jsinterpreter.antlr.ReginaScriptParser;
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.atn.PredictionMode;
-import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Yuzhou on 2016/2/12.
@@ -15,8 +17,7 @@ import java.util.HashMap;
 public class AntlrTest {
     @Test
     public void testAntlr() {
-        String sentence = "1+2";
-
+        String sentence = "data.dd-1==0";
 
         ReginaScriptLexer lexer = new ReginaScriptLexer(new ANTLRInputStream(sentence));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -33,7 +34,9 @@ public class AntlrTest {
             tree = parser.singleExpression();
         }
 
-        AntlrVisitor visitor = new AntlrVisitor(new HashMap<>());
+        Map<String, Object> env = new HashMap<>();
+        env.put("dd", 2.0);
+        AntlrVisitor visitor = new AntlrVisitor(env);
         System.out.println(visitor.visit(tree));
     }
 }

@@ -5,25 +5,27 @@ grammar ReginaScript;
 // ;
 
 singleExpression
- : singleExpression '[' singleExpression ']'                     #MemberIndexExpression
- | singleExpression op = '.' identifierName                             #MemberDotExpression
- | op = '+' singleExpression                                            #UnaryPlusExpression
- | op = '-' singleExpression                                            #UnaryMinusExpression
- | op = '!' singleExpression                                            #NotExpression
+ : singleExpression '[' singleExpression ']'                            #MemberIndexExpression
+ | singleExpression '.' identifierName                                  #MemberDotExpression
+ | '+' singleExpression                                                 #UnaryPlusExpression
+ | '-' singleExpression                                                 #UnaryMinusExpression
+ | '!' singleExpression                                                 #NotExpression
  | singleExpression op = ('*' | '/' | '%') singleExpression             #MultiplicativeExpression
  | singleExpression op = ('+' | '-' ) singleExpression                  #AdditiveExpression
  | singleExpression op = ('<' | '>' | '<=' | '>=' ) singleExpression    #RelationalExpression
  | singleExpression op = ('==' | '!=' ) singleExpression                #EqualityExpression
- | singleExpression op = '&&' singleExpression                          #LogicalAndExpression
- | singleExpression op = '||' singleExpression                          #LogicalOrExpression
- | singleExpression op = '?' singleExpression ':' singleExpression      #TernaryExpression
- | Identifier                                                      #IdentifierExpression
- | literal                                                  #LiteralExpression
- | '(' singleExpression ')'                                      #ParenthesizedExpression
+ | singleExpression '&&' singleExpression                               #LogicalAndExpression
+ | singleExpression '||' singleExpression                               #LogicalOrExpression
+ | singleExpression '?' singleExpression ':' singleExpression           #TernaryExpression
+ | literal                                                              #LiteralExpression
+ | EnvironmentalIdentifier                                              #EnvironmentalIdentifierExpression
+ | NormalIdentifier                                                     #NormalIdentifierExpression
+ | '(' singleExpression ')'                                             #ParenthesizedExpression
  ;
 
 literal
- : ( BooleanLiteral
+ : ( NullLiteral
+   | BooleanLiteral
    | StringLiteral
    )
    | numericLiteral
@@ -36,29 +38,42 @@ numericLiteral
  ;
 
 identifierName
- : Identifier
+ : NormalIdentifier
  | reservedWord
  ;
 
-reservedWord
- : keyword
- | futureReservedWord
- | BooleanLiteral
- ;
-
-keyword
- : Data
- | UUID
- | Online
- ;
-
-Identifier
- : IdentifierStart IdentifierPart*
+NullLiteral
+ : 'null'
  ;
 
 BooleanLiteral
  : 'true'
  | 'false'
+ ;
+
+reservedWord
+ : keyword
+ | ( BooleanLiteral
+   | NullLiteral
+   | EnvironmentalIdentifier
+   )
+ ;
+
+keyword
+ : UUID
+ | Online
+ ;
+
+//must put after literals
+//Identifier
+// : EnvironmentalIdentifier
+// | NormalIdentifier
+// ;
+EnvironmentalIdentifier
+ : 'data'
+ ;
+NormalIdentifier
+ : IdentifierStart IdentifierPart*
  ;
 
 DecimalLiteral
@@ -115,7 +130,7 @@ RightShiftArithmetic       : '>>';
 LeftShiftArithmetic        : '<<';
 RightShiftLogical          : '>>>';
 LessThan                   : '<';
-MoreThan                   : '>';
+GreaterThan                : '>';
 LessThanEquals             : '<=';
 GreaterThanEquals          : '>=';
 Equals                     : '==';
@@ -185,7 +200,5 @@ fragment DecimalIntegerLiteral
  : '0'
  | [1-9] DecimalDigit*
  ;
-
-futureReservedWord: '';
 
 WS : [ \t\r\n]+ -> skip;

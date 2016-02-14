@@ -136,13 +136,13 @@ public class ReginaScriptBaseListener implements ReginaScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdentifierExpression(ReginaScriptParser.IdentifierExpressionContext ctx) { }
+	@Override public void enterNormalIdentifierExpression(ReginaScriptParser.NormalIdentifierExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIdentifierExpression(ReginaScriptParser.IdentifierExpressionContext ctx) { }
+	@Override public void exitNormalIdentifierExpression(ReginaScriptParser.NormalIdentifierExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -155,6 +155,18 @@ public class ReginaScriptBaseListener implements ReginaScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitUnaryMinusExpression(ReginaScriptParser.UnaryMinusExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEnvironmentalIdentifierExpression(ReginaScriptParser.EnvironmentalIdentifierExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEnvironmentalIdentifierExpression(ReginaScriptParser.EnvironmentalIdentifierExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -251,18 +263,6 @@ public class ReginaScriptBaseListener implements ReginaScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitKeyword(ReginaScriptParser.KeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFutureReservedWord(ReginaScriptParser.FutureReservedWordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFutureReservedWord(ReginaScriptParser.FutureReservedWordContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

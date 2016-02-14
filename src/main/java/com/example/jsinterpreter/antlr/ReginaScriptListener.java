@@ -128,17 +128,17 @@ public interface ReginaScriptListener extends ParseTreeListener {
 	 */
 	void exitMemberIndexExpression(ReginaScriptParser.MemberIndexExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code IdentifierExpression}
+	 * Enter a parse tree produced by the {@code NormalIdentifierExpression}
 	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterIdentifierExpression(ReginaScriptParser.IdentifierExpressionContext ctx);
+	void enterNormalIdentifierExpression(ReginaScriptParser.NormalIdentifierExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code IdentifierExpression}
+	 * Exit a parse tree produced by the {@code NormalIdentifierExpression}
 	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitIdentifierExpression(ReginaScriptParser.IdentifierExpressionContext ctx);
+	void exitNormalIdentifierExpression(ReginaScriptParser.NormalIdentifierExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code UnaryMinusExpression}
 	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
@@ -151,6 +151,18 @@ public interface ReginaScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitUnaryMinusExpression(ReginaScriptParser.UnaryMinusExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code EnvironmentalIdentifierExpression}
+	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnvironmentalIdentifierExpression(ReginaScriptParser.EnvironmentalIdentifierExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code EnvironmentalIdentifierExpression}
+	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnvironmentalIdentifierExpression(ReginaScriptParser.EnvironmentalIdentifierExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code UnaryPlusExpression}
 	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
@@ -237,14 +249,4 @@ public interface ReginaScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitKeyword(ReginaScriptParser.KeywordContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReginaScriptParser#futureReservedWord}.
-	 * @param ctx the parse tree
-	 */
-	void enterFutureReservedWord(ReginaScriptParser.FutureReservedWordContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReginaScriptParser#futureReservedWord}.
-	 * @param ctx the parse tree
-	 */
-	void exitFutureReservedWord(ReginaScriptParser.FutureReservedWordContext ctx);
 }

@@ -81,12 +81,12 @@ public interface ReginaScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMemberIndexExpression(ReginaScriptParser.MemberIndexExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IdentifierExpression}
+	 * Visit a parse tree produced by the {@code NormalIdentifierExpression}
 	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIdentifierExpression(ReginaScriptParser.IdentifierExpressionContext ctx);
+	T visitNormalIdentifierExpression(ReginaScriptParser.NormalIdentifierExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code UnaryMinusExpression}
 	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
@@ -94,6 +94,13 @@ public interface ReginaScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUnaryMinusExpression(ReginaScriptParser.UnaryMinusExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EnvironmentalIdentifierExpression}
+	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnvironmentalIdentifierExpression(ReginaScriptParser.EnvironmentalIdentifierExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code UnaryPlusExpression}
 	 * labeled alternative in {@link ReginaScriptParser#singleExpression}.
@@ -145,10 +152,4 @@ public interface ReginaScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitKeyword(ReginaScriptParser.KeywordContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReginaScriptParser#futureReservedWord}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFutureReservedWord(ReginaScriptParser.FutureReservedWordContext ctx);
 }
