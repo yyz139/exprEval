@@ -17,7 +17,7 @@ import java.util.Map;
 public class AntlrTest {
     @Test
     public void testAntlr() {
-        String sentence = "data.dd-1==0";
+        String sentence = "data.dd-1*3==0";
 
         ReginaScriptLexer lexer = new ReginaScriptLexer(new ANTLRInputStream(sentence));
         CommonTokenStream tokens = new CommonTokenStream(lexer);

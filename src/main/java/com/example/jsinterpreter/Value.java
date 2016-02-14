@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by Yuzhou on 2016/2/13.
  */
 public class Value {
-    private static final double SMALL_VALUE = 0.000000000001;
+    private static final Value SMALL_VALUE = new Value(0.000000000001);
 
     private final Object value;
 
@@ -50,6 +50,17 @@ public class Value {
             return new Value(+asDouble());
         } else {
             throw new InterpreterException("inverse(): need double");
+        }
+    }
+    public Value abs() {
+        if (isDouble()) {
+            if (asDouble() > 0) {
+                return this;
+            } else {
+                return new Value(-asDouble());
+            }
+        } else {
+            throw new InterpreterException("abs(): need double");
         }
     }
     //-----------------------checking methods---------------------
@@ -143,7 +154,7 @@ public class Value {
     }
     public Value equals(Value right) {
         if (isDouble() && right.isDouble()) {
-            return new Value(asDouble() - right.asDouble() < SMALL_VALUE);
+            return this.minus(right).abs().lessThan(SMALL_VALUE);
         } else if (isBoolean() && right.isBoolean()){
             return new Value(asBoolean() == right.asBoolean());
         } else {
